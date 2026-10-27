@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.env
+.env.local
+.env.production
+.turbo/
+dist/
+coverage/
+*.log
+*.bak
+*.old
+.idea/
+.vscode/*
+!.vscode/settings.json
+*.swp
+*.DS_Store
+.DS_Store

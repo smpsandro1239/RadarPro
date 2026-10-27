@@ -1,0 +1,18 @@
+$schema = 'https://turbo.build/schema.json'
+
+pipeline:
+  build:
+    dependsOn: ['^build']
+    outputs: ['.next/**', 'dist/**']
+  dev:
+    cache: false
+  typecheck:
+    dependsOn: ['^typecheck']
+  test:
+    dependsOn: ['^test']
+  lint:
+    dependsOn: ['^lint']
+  db:push:
+    cache: false
+  health-check:
+    cache: false
