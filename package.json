@@ -1,6 +1,7 @@
 {
   "name": "radarpro",
   "private": true,
+  "version": "0.0.1",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -16,10 +17,10 @@
     "health-check": "turbo run health-check"
   },
   "devDependencies": {
-    "turbo": "^2.0",
-    "typescript": "^5.5",
-    "prettier": "^3.3",
-    "eslint": "^8.57"
+    "turbo": "^2.0.0",
+    "typescript": "^5.5.4",
+    "prettier": "^3.3.3",
+    "eslint": "^8.57.0"
   },
-  "packageManager": "pnpm@9.0"
+  "packageManager": "pnpm@9.0.0"
 }
