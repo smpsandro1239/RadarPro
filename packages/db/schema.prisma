@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Imovel {
+  id            String    @id @default(cuid())
+  externalId    String    @unique
+  fonteId       String
+  url           String
+  titulo        String
+  descricao     String
+  tipo          String
+  operacao      String
+  preco         Decimal
+  area          Decimal?
+  quartos       Int?
+  casasBanho    Int?
+  distrito      String
+  concelho      String
+  freguesia     String?
+  morada        String?
+  lat           Float?
+  lng           Float?
+  score         Int       @default(0)
+  scoreBreakdown Json?
+  valorMercado  Decimal?
+  descontoPct   Float?
+  rentabilidadePct Float?
+  risco         String?
+  photos        Json      @default("[]")
+  publicadoEm   DateTime?
+  raw           Json      @default("{}")
+  criadoEm      DateTime  @default(now())
+  atualizadoEm  DateTime  @updatedAt
+
+  fonte Fonte @relation(fields: [fonteId], references: [id])
+
+  @@index([distrito])
+  @@index([concelho])
+  @@index([score])
+  @@index([publicadoEm])
+  @@index([fonteId])
+  @@fulltext([titulo, descricao, morada])
+}
+
+model Fonte {
+  id          String    @id @default(cuid())
+  nome        String    @unique
+  tipo        String
+  url         String
+  ativo       Boolean   @default(true)
+  ultimaColeta DateTime?
+  criadoEm    DateTime  @default(now())
+
+  imoveis Imovel[]
+}
+
+model User {
+  id            String    @id @default(cuid())
+  clerkId       String    @unique
+  email         String    @unique
+  nome          String?
+  plano         String    @default("free")
+  creditos      Int       @default(25)
+  criadoEm      DateTime  @default(now())
+  atualizadoEm DateTime  @updatedAt
+
+  alertas Alerta[]
+  favoritos Favorito[]
+}
+
+model Alerta {
+  id            String   @id @default(cuid())
+  userId        String
+  distrito      String?
+  concelho      String?
+  tipo          String?
+  operacao      String?
+  precoMax      Decimal?
+  areaMin       Decimal?
+  quartosMin    Int?
+  scoreMin      Int      @default(0)
+  ativo         Boolean  @default(true)
+  criadoEm      DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model Favorito {
+  id        String   @id @default(cuid())
+  userId    String
+  imovelId  String
+  criadoEm  DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id])
+  imovel   Imovel   @relation(fields: [imovelId], references: [id])
+
+  @@unique([userId, imovelId])
+}
+
+model Subscription {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  plano         String
+  stripePriceId String?
+  stripeSubscriptionId String?
+  status        String    @default("active")
+  criadoEm      DateTime  @default(now())
+  atualizadoEm DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  acao      String
+  entidade  String
+  entidadeId String
+  userId    String?
+  metadata  Json      @default("{}")
+  criadoEm  DateTime  @default(now())
+
+  @@index([entidade, entidadeId])
+  @@index([criadoEm])
+}
