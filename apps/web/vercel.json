@@ -1,0 +1,5 @@
+{
+  "installCommand": "pnpm install --prefix ../..",
+  "buildCommand": "pnpm --prefix ../.. --filter @radarpro/web build",
+  "outputDirectory": ".next"
+}
