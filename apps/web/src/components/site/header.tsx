@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
-import { Radar, Menu } from 'lucide-react'
+import { Radar } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function Header() {
@@ -21,20 +20,15 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <SignedOut>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/entrar">Aceder</Link>
-            </Button>
-            <Button size="sm" asChild>
-              <Link href="/registar">Começar grátis</Link>
-            </Button>
-          </SignedOut>
-          <SignedIn>
-            <Button variant="secondary" size="sm" asChild>
-              <Link href="/oportunidades">Ver oportunidades</Link>
-            </Button>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/entrar">Aceder</Link>
+          </Button>
+          <Button size="sm" asChild>
+            <Link href="/registar">Começar grátis</Link>
+          </Button>
+          <Button variant="secondary" size="sm" asChild className="hidden md:inline-flex">
+            <Link href="/oportunidades">Ver oportunidades</Link>
+          </Button>
         </div>
       </div>
     </header>
