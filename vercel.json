@@ -1,7 +1,7 @@
 {
   "version": 2,
   "framework": "nextjs",
-  "installCommand": "cd ../.. && pnpm install",
-  "buildCommand": "pnpm build",
-  "outputDirectory": ".next"
+  "buildCommand": "pnpm --filter @radarpro/web build",
+  "installCommand": "pnpm install",
+  "outputDirectory": "apps/web/.next"
 }
