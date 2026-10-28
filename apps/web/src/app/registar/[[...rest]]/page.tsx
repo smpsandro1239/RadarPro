@@ -1,5 +1,7 @@
 import { SignUp } from '@clerk/nextjs'
 
+export const instant = false
+
 export default function RegistarPage() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center px-4 py-12">

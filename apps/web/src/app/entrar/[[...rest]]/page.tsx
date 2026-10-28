@@ -1,5 +1,7 @@
 import { SignIn } from '@clerk/nextjs'
 
+export const instant = false
+
 export default function EntrarPage() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center px-4 py-12">
