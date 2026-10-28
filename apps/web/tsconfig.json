@@ -20,8 +20,6 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@radarpro/db": ["../../packages/db"],
-      "@radarpro/db/*": ["../../packages/db/*"],
       "@radarpro/types": ["../../packages/types"],
       "@radarpro/types/*": ["../../packages/types/*"]
     }
