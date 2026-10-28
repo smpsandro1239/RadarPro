@@ -1,6 +1,5 @@
 import { SignUp } from '@clerk/nextjs'
 
-export const instant = false
 
 export default function RegistarPage() {
   return (
