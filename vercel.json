@@ -1,7 +1,15 @@
 {
   "version": 2,
-  "framework": "nextjs",
-  "buildCommand": "pnpm --filter @radarpro/web build",
-  "installCommand": "pnpm install",
-  "outputDirectory": "apps/web/.next"
+  "builds": [
+    {
+      "src": "apps/web/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "apps/web/$1"
+    }
+  ]
 }
