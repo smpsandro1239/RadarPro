@@ -1,5 +1,5 @@
 {
-  "installCommand": "cd $(pwd)/../.. && pnpm install",
-  "buildCommand": "cd $(pwd)/../.. && pnpm --filter @radarpro/web build",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm build",
   "outputDirectory": ".next"
 }
